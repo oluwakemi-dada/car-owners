@@ -1,0 +1,26 @@
+.header {
+  padding: 2rem 0;
+  font-size: 3rem;
+}
+
+.selections {
+  display: grid;
+  grid-template-columns: 0.4fr 0.4fr 0.2fr;
+  column-gap: 3rem;
+  margin-top: 1rem;
+}
+
+.line {
+  height: 1px;
+  background: #dad7d7;
+  margin: 2.5rem 0;
+}
+
+.owners-count {
+  font-weight: 600;
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: 0.45fr 0.55fr;
+}
