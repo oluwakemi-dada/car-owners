@@ -3,11 +3,23 @@
   font-size: 3rem;
 }
 
-.selections {
+.inputs {
   display: grid;
   grid-template-columns: 0.4fr 0.4fr 0.2fr;
   column-gap: 3rem;
   margin-top: 1rem;
+
+  .gender {
+
+  }
+
+  .age-slider {
+
+  }
+
+  .results-btn {
+    align-self: center;
+  }
 }
 
 .line {
