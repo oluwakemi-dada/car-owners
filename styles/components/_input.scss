@@ -1,0 +1,32 @@
+.form-group {
+  label {
+    font-size: 14px;
+  }
+
+  .selectize-control {
+    .selectize-input {
+      box-shadow: none;
+      font-size: 14px;
+    }
+
+    .option {
+      font-size: 14px;
+    }
+  }
+}
+
+.irs {
+  &-bar {
+    border-color: #0188ff !important;
+    background: #0188ff !important;
+  }
+
+  &-from,
+  &-to {
+    background: #0188ff !important;
+  }
+
+  .jjj {
+    color: #85bff2;
+  }
+}

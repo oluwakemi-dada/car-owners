@@ -50,12 +50,16 @@ ui <- fluidPage(
     div(class = "line"),
 
     div(
-      class = "owners-count",
-      h4(textOutput("entries_text"))
-    ),
+      class = "count-table",
+      div(
+        class = "owners-count",
+        textOutput("entries_text")
+      ),
 
-    div(
-      dataTableOutput("entries_table")
+      div(
+        class = "stats-table",
+        dataTableOutput("entries_table")
+      )
     ),
 
     div(
@@ -134,7 +138,7 @@ server <- function(input, output) {
     {
       
       ggplot(owners_filtered(), aes(income_fct, car_price))+
-        geom_bar(fill = "#985917", stat = "summary", fun = mean)+
+        geom_bar(fill = "#85bff2", stat = "summary", fun = mean)+
         xlab("Income level")+
         ylab("Average car price")+
         labs(title = "Average Car Price by Income Level",

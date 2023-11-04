@@ -1,0 +1,61 @@
+// .count-table {
+//   background: #fff;
+//   border-radius: 20px;
+//   padding: 50px 20px;
+//   margin-bottom: 30px;
+// }
+
+.count-table {
+  .owners-count {
+  }
+
+  .stats-table {
+    .row {
+      &:first-child {
+        margin-bottom: 15px;
+      }
+      
+      .col-sm-12 {
+        overflow: auto;
+        border: 1px solid #fafafa;
+        border-radius: 8px;
+
+        table {
+          min-width: 1000px;
+          width: 100% !important;
+          
+          thead {
+            background: #002766;
+            color: #fff;
+
+            th {
+              padding: 10px !important;
+              font-size: 14px;
+              font-weight: 500;
+            }
+          }
+
+          tfoot {
+            visibility: hidden;
+          }
+
+          tbody {
+            .odd {
+              background: #fff;
+            }
+
+            .even {
+              background: #fafafa;
+            }
+
+            td {
+              border-top: 1px solid #f5f1f1;
+              padding: 15px 8px;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
