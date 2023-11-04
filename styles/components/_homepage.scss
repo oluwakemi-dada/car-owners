@@ -44,6 +44,11 @@
   display: grid;
   grid-template-columns: 0.45fr 0.55fr;
   margin: 30px 0;
+
+  > div img {
+    background: #fff;
+    padding: 30px 0;
+  }
 }
 
 .paginate_button {

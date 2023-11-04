@@ -1,10 +1,3 @@
-// .count-table {
-//   background: #fff;
-//   border-radius: 20px;
-//   padding: 50px 20px;
-//   margin-bottom: 30px;
-// }
-
 .count-table {
   .owners-count {
   }
@@ -14,7 +7,7 @@
       &:first-child {
         margin-bottom: 15px;
       }
-      
+
       .col-sm-12 {
         overflow: auto;
         border: 1px solid #fafafa;
@@ -23,7 +16,7 @@
         table {
           min-width: 1000px;
           width: 100% !important;
-          
+
           thead {
             background: #002766;
             color: #fff;
