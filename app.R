@@ -5,8 +5,7 @@ library(ggplot2)
 
 owners <- read.csv("car_owners.csv", stringsAsFactors = FALSE)
 
-owners$income_fct <- factor(owners$income, levels = c("Under $25", "$25 - $49",
-                                                      "$50 - $74", "$75+"))
+owners$income_fct <- factor(owners$income, levels = c("Under $25", "$25 - $49", "$50 - $74", "$75+"))
 
 sass(
   sass::sass_file("styles/main.scss"),
@@ -17,7 +16,6 @@ sass(
 ui <- fluidPage(
   tags$head(
     tags$link(rel = "stylesheet", type = "text/css", href = "styles/sass.min.css"),
-  # tags$script(src = "/scripts/index.js")
   ),
   div(
     h1(
@@ -71,72 +69,49 @@ ui <- fluidPage(
 )
 
 server <- function(input, output) {
-  
   ##### DATA PREPARATION ##################
   
   ### create the filtered data set
-  
-  owners_filtered <- eventReactive(input$go, {
-    
+  owners_filtered <- eventReactive(input$go, { 
     owners %>% filter(gender == input$gender,
                       age >= input$age[1],
                       age <= input$age[2]) %>%
       select(car_price, income, education, marital, income_fct)
-    
-    
   })
   
   ### compute the number of entries (owners) in the filtered data set
-  
   entries <- eventReactive(input$go, {
-    
     owners_filtered() %>% count()
-    
   })
   
   ### create the data frame with the frequencies of the education variable
   ### (needed for the pie chart)
-  
-  frequencies <- eventReactive(input$go, {
-    
+  frequencies <- eventReactive(input$go, 
     owners_filtered() %>% count(education)
-    
-  })
+  )
   
   frequencies_df <- eventReactive(input$go, {
-    
     as.data.frame(frequencies())
-    
   })
   
   ##### CREATE THE OUTPUT OBJECTS ##################
   
-  ### print the text
-  
+  # print the text
   output$entries_text <- renderText({
-    
     paste0("Number of owners: ", entries())
-    
   })
   
-  ### display the table
-  
+  # display the table
   output$entries_table <- renderDataTable(
-    
     options = list(pageLength = 5),
-    
     {
-      
       owners_filtered()[,-5]
-      
-    } )
+    }
+  )
   
-  ### plot the bar chart
-  
+  # plot the bar chart
   output$bar_chart <- renderPlot(
-    
     {
-      
       ggplot(owners_filtered(), aes(income_fct, car_price))+
         geom_bar(fill = "#85bff2", stat = "summary", fun = mean)+
         xlab("Income level")+
@@ -144,15 +119,11 @@ server <- function(input, output) {
         labs(title = "Average Car Price by Income Level",
              subtitle = paste0("Gender: ", input$gender))+
         theme(plot.title = element_text(size = 17, hjust = 0.5, face = "bold"),
-              plot.subtitle = element_text(size = 14, hjust = 0.5),
-              panel.background = element_rect(fill = "white", colour = "black"))
-      
-      
-    })
+        plot.subtitle = element_text(size = 14, hjust = 0.5),
+        panel.background = element_rect(fill = "white", colour = "black"))
+  })
   
-  
-  ### plot the pie chart
-  
+  # plot the pie chart
   output$pie_chart <- renderPlot({
     
     ggplot(frequencies_df(), aes(x = "", y = n, fill = education))+
@@ -168,12 +139,7 @@ server <- function(input, output) {
             plot.subtitle = element_text(size = 14, hjust = 0.5))+
       scale_fill_brewer(palette = "Greens")+
       labs(fill = "Education")
-    
-    
   })
-  
-  
-  
 }
 
 shinyApp(ui = ui, server = server)
